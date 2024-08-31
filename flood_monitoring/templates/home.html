@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>GeoTech - Flood Monitoring</title>
+		<style>
+			/* Basic reset */
+			body,
+			h1,
+			h2,
+			h3,
+			p,
+			ul,
+			li {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: Arial, sans-serif;
+				line-height: 1.6;
+			}
+
+			header {
+				background: #333;
+				color: #fff;
+				padding: 10px 0;
+			}
+
+			nav ul {
+				display: flex;
+				justify-content: center;
+				list-style: none;
+			}
+
+			nav ul li {
+				margin: 0 15px;
+			}
+
+			nav ul li a {
+				color: #fff;
+				text-decoration: none;
+			}
+
+			#intro {
+				text-align: center;
+				padding: 50px 20px;
+			}
+
+			#intro h1 {
+				font-size: 2.5em;
+			}
+
+			#intro .btn {
+				background: #f60;
+				color: #fff;
+				padding: 10px 20px;
+				text-decoration: none;
+				border-radius: 5px;
+			}
+
+			#features {
+				display: flex;
+				justify-content: space-around;
+				padding: 20px;
+				flex-wrap: wrap;
+			}
+
+			.feature-item {
+				background: #f4f4f4;
+				padding: 20px;
+				border-radius: 5px;
+				text-align: center;
+				width: 45%;
+				margin-bottom: 20px;
+			}
+
+			.feature-item .btn {
+				background: #f60;
+				color: #fff;
+				padding: 10px 20px;
+				text-decoration: none;
+				border-radius: 5px;
+			}
+
+			footer {
+				background: #333;
+				color: #fff;
+				text-align: center;
+				padding: 10px 0;
+				position: absolute;
+				width: 100%;
+				bottom: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<ul>
+					<li><a href="{% url 'home' %}">Home</a></li>
+					<li><a href="{% url 'map_dashboard' %}">Map Dashboard</a></li>
+					<li><a href="{% url 'alerts' %}">Alerts</a></li>
+					<li><a href="{% url 'reports' %}">Reports</a></li>
+					<li><a href="{% url 'about' %}">About Us</a></li>
+					<li><a href="{% url 'contact' %}">Contact</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main>
+			<section id="intro">
+				<h1>Welcome to GeoTech</h1>
+				<p>Empowering Africa with real-time flood data and early warnings.</p>
+				<a href="{% url 'map_dashboard' %}" class="btn">Get Started</a>
+			</section>
+
+			<section id="features">
+				<div class="feature-item">
+					<h3>Real-Time Flood Monitoring</h3>
+					<p>
+						Track flood-prone areas with up-to-date satellite imagery and
+						rainfall data.
+					</p>
+					<a href="{% url 'map_dashboard' %}" class="btn">Explore Map</a>
+				</div>
+				<div class="feature-item">
+					<h3>Early Warning Alerts</h3>
+					<p>
+						Receive timely alerts about potential flood risks to stay prepared.
+					</p>
+					<a href="{% url 'alerts' %}" class="btn">View Alerts</a>
+				</div>
+				<div class="feature-item">
+					<h3>Climate Resilience Reports</h3>
+					<p>
+						Read comprehensive reports on climate resilience and flood impacts.
+					</p>
+					<a href="{% url 'reports' %}" class="btn">Read Reports</a>
+				</div>
+			</section>
+		</main>
+
+		<footer>
+			<p>&copy; 2024 GeoTech. All rights reserved.</p>
+		</footer>
+	</body>
+</html>
