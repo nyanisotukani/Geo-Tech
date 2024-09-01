@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Weather Risk Results for {{ location }}</title>
+	</head>
+	<body>
+		<div class="location-form">
+			<form method="post" action="{% url 'home' %}">
+				{% csrf_token %} {{ form.as_p }}
+				<button type="submit">Monitor Location</button>
+			</form>
+		</div>
+		<h1>Weather Risk Results for {{ location }}</h1>
+		<h2>Current Weather Risk Map</h2>
+		<div>{{ map_html|safe }}</div>
+		<h2>Precipitation Forecast (Next 24 Hours)</h2>
+		<img
+			src="data:image/png;base64,{{ graph_data }}"
+			alt="Precipitation Forecast"
+		/>
+		<h2>Historical Data Analysis</h2>
+		<div>{{ historical_data|safe }}</div>
+		<a href="{% url 'home' %}">Back to Home</a>
+	</body>
+</html>
