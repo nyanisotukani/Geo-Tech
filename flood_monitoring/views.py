@@ -60,23 +60,8 @@ def chat_view(request):
             response.raise_for_status()  # Raise an exception for HTTP errors
             response_json = response.json()
             bot_response = response_json['candidates'][0]['content']['parts'][0]['text']
-            # client = texttospeech.TextToSpeechClient()
-
-            # synthesis_input = texttospeech.SynthesisInput(text=bot_response)
-            # voice = texttospeech.VoiceSelectionParams(
-            #     language_code="en-US", name="en-US-Wavenet-D"
-            # )
-            # audio_config = texttospeech.AudioConfig(
-            #     audio_encoding=texttospeech.AudioEncoding.MP3
-            # )
-
-            # response = client.synthesize_speech(
-            #     input=synthesis_input, voice=voice, audio_config=audio_config
-            # )
-
-            # with open("output.mp3", "wb") as out:
-            #     out.write(response.audio_content)
-                        
+            
+            
             # Return the response as JSON
             return JsonResponse({'response': bot_response})
         except Exception as e:
