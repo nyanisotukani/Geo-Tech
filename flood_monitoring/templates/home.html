@@ -193,6 +193,58 @@
 				margin: 0 auto;
 				width: 50px;
 			}
+
+			h2{
+				font-family: "Oswald", sans-serif;
+				font-optical-sizing: auto;
+				font-weight: 900;
+				font-style: normal;
+			}
+			h2 {
+				font-family: "Oswald", sans-serif;
+				font-optical-sizing: auto;
+				font-weight: 900;
+				font-style: normal;
+			  }
+			
+			  .location-form {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 30vh; /* Full viewport height to center vertically */
+				text-align: center;
+				box-shadow: 0 5px 15px rgba(135, 206, 235, 0.6);
+				width: 400px;
+				margin: auto; /* Center the form horizontally */
+			  }
+			
+			  .location-form form {
+				display: flex;
+				flex-direction: column; /* Stack form elements vertically */
+				gap: 10px; /* Add space between form elements */
+			  }
+			
+			  button {
+				padding: 13px 13px;
+				font-size: 16px;
+				cursor: pointer;
+				background: #4CC9F0;
+				border-radius: 10px;
+				border: none;
+				color: white;
+				font-weight: 600;
+				font-size: 15px;
+				transition: background 0.3s ease;
+			  }
+			
+			  button:hover {
+				background: #3BADE1;
+			  }
+			
+			  form {
+				width: 100%;
+				max-width: 300px;
+			  }
 		</style>
 	</head>
 
@@ -247,13 +299,7 @@
 					alt="img"
 				/>
 			</div>
-			<div class="location-form">
-				<h3>Monitor your Location</h3>
-				<form method="post" action="{% url 'home' %}">
-					{% csrf_token %} {{ form.as_p }}
-					<button type="submit">Monitor Location</button>
-				</form>
-			</div>
+			
 		</div>
 		<!--Main Section-->
 
@@ -296,6 +342,16 @@
 			</div>
 		</div>
 
+		<div class="location-form">
+			<div>
+			  <h2>Monitor your Location</h2>
+			  <form method="post" action="{% url 'home' %}">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button type="submit">Monitor Location</button>
+			  </form>
+			</div>
+		  </div>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

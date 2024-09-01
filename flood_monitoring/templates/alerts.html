@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<title>Make an appointment</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Early Warning Alerts</title>
-		{% load static %}
+		<!-- primary meta tags-->
+		<meta name="title" content="" />
+		<meta name="description" content="" />
 
-		<!-- Favicon -->
-		<link
-			rel="shortcut icon"
-			href="{% static 'favicon.ico' %}"
-			type="image/x-icon"
-		/>
+		<!-- favicon-->
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
-		<!-- Google Fonts -->
+		<!--Google font link-->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -21,7 +20,15 @@
 			rel="stylesheet"
 		/>
 
-		<!-- Bootstrap CSS -->
+		<!-- Preload images-->
+		<link rel="preload" as="image" href="./assets/hero-bg.png" />
+		<link
+			rel="preload"
+			as="image"
+			href="./assets/images/happpy-patient-nurse.jpg"
+		/>
+
+		<script src="https://kit.fontawesome.com" crossorigin="anonymous"></script>
 		<link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 			rel="stylesheet"
@@ -29,23 +36,25 @@
 			crossorigin="anonymous"
 		/>
 
-		<!-- Font Awesome -->
 		<link
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 		/>
 
-		<!-- Custom CSS -->
+		<!-- custom css link-->
 		<style>
 			body {
 				font-family: "Rubik", sans-serif;
-				background-color: #f4f4f4;
+				background-color: #f0f8ff;
+				margin: 0;
+				padding: 0;
 			}
 
 			.navbar {
 				display: flex;
 				justify-content: space-between;
-				background: #0081a7;
+				align-items: center;
+				background: #0097b2;
 				padding: 10px 20px;
 				position: fixed;
 				width: 100%;
@@ -75,12 +84,12 @@
 
 			.navbar-list li a:hover,
 			.navbar-list li a.active {
-				color: red;
-				border-bottom: 2px solid red;
+				color: #ff5733;
+				border-bottom: 2px solid #ff5733;
 			}
 
 			.alert-section {
-				padding: 60px 20px;
+				padding: 100px 20px;
 				text-align: center;
 			}
 
@@ -88,51 +97,61 @@
 				font-family: "Oswald", sans-serif;
 				font-size: 36px;
 				color: #333;
+				margin-bottom: 20px;
 			}
 
 			.alert-form {
 				margin-top: 40px;
+				display: flex;
+				justify-content: center;
 			}
 
-			.alert-form .form-control {
-				border-radius: 0.25rem;
+			.form-container {
+				background-color: #ffffff;
+				border-radius: 10px;
+				padding: 20px;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+				min-width: 300px;
 			}
 
-			.alert-form .btn-primary {
-				background-color: #0081a7;
-				border-color: #0081a7;
-				transition: background-color 0.3s ease;
-			}
-
-			.alert-form .btn-primary:hover {
-				background-color: #005f6b;
-				border-color: #005f6b;
-			}
-
-			.alert-list {
-				margin-top: 40px;
-			}
-
-			.alert-list .alert {
+			.form-group {
 				margin-bottom: 20px;
 			}
 
-			.alert-list .alert-info {
-				background-color: #d9edf7;
-				border-color: #bce8f1;
-				color: #31708f;
+			.form-group label {
+				display: block;
+				font-size: 14px;
+				color: #333;
+				margin-bottom: 5px;
 			}
 
-			.alert-list .alert-warning {
-				background-color: #fcf8e3;
-				border-color: #faebcc;
-				color: #8a6d3b;
+			.form-control {
+				width: 100%;
+				padding: 10px;
+				border: 1px solid #ddd;
+				border-radius: 5px;
+				transition: border-color 0.2s ease-in-out;
 			}
 
-			.alert-list .alert-danger {
-				background-color: #f2dede;
-				border-color: #ebccd1;
-				color: #a94442;
+			.form-control:focus {
+				border-color: #0081a7;
+				outline: none;
+				box-shadow: 0 0 10px rgba(0, 129, 167, 0.2);
+			}
+
+			.btn-primary {
+				background-color: #0081a7;
+				border: none;
+				color: white;
+				padding: 10px 20px;
+				border-radius: 5px;
+				cursor: pointer;
+				transition: background-color 0.3s ease;
+				width: 100%;
+			}
+
+			.btn-primary:hover {
+				background-color: #005f6b;
 			}
 
 			.thank-you-message {
@@ -142,12 +161,39 @@
 				font-weight: bold;
 			}
 
+			.alert-list {
+				margin-top: 40px;
+				max-width: 200px; /* Setting minimum width */
+				align-content:center;
+				margin-left:43%;
+			}
+			
+			.alert-list .alert {
+				margin-bottom: 20px;
+				font-size: 15px;
+			}
+			
+			.form-container {
+				background-color: #ffffff;
+				border-radius: 10px;
+				padding: 20px;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+				min-width: 200px; /* Minimum width set to 200px */
+			}
+			
 			/* Responsive Design */
 			@media (max-width: 768px) {
-				.alert-form .form-group {
-					margin-bottom: 15px;
+				.form-container {
+					width: 100%; /* Full width for mobile */
+					min-width: 200px; /* Ensure minimum width is 200px */
+				}
+			
+				.alert-list {
+					width: 100%; /* Full width for mobile */
+					min-width: 200px; /* Ensure minimum width is 200px */
 				}
 			}
+			
 		</style>
 	</head>
 
@@ -155,9 +201,9 @@
 		<!-- Navigation Bar -->
 		<nav class="navbar">
 			<div class="container-fluid">
-				<div class="menu-icon" onclick="toggleMenu()">
-					<i class="fa fa-bars"></i>
-				</div>
+				<a href="#">
+					<img width="70" src="./static/Logo.png" alt="logo" />
+				</a>
 				<ul class="navbar-list">
 					<li class="navbar-item">
 						<a href="{% url 'home' %}" class="navbar-link title-md">Home</a>
@@ -178,9 +224,7 @@
 						>
 					</li>
 					<li class="navbar-item">
-						<a href="{% url 'about' %}" class="navbar-link title-md"
-							>About Us</a
-						>
+						<a href="{% url 'about' %}" class="navbar-link title-md">About Us</a>
 					</li>
 				</ul>
 			</div>
@@ -193,32 +237,34 @@
 
 			<!-- Alert Subscription Form -->
 			<div class="alert-form">
-				<h4>Subscribe to Alerts</h4>
-				<form id="subscription-form">
-					<div class="form-group">
-						<label for="email">Email Address:</label>
-						<input
-							type="email"
-							id="email"
-							class="form-control"
-							placeholder="Enter your email"
-							required
-						/>
+				<div class="form-container">
+					<h4>Subscribe to Alerts</h4>
+					<form id="subscription-form">
+						<div class="form-group">
+							<label for="email">Email Address:</label>
+							<input
+								type="email"
+								id="email"
+								class="form-control"
+								placeholder="Enter your email"
+								required
+							/>
+						</div>
+						<div class="form-group">
+							<label for="region">Select Region:</label>
+							<select id="region" class="form-control" required>
+								<option value="">Select a region</option>
+								<option value="east">Eastern Region</option>
+								<option value="west">Western Region</option>
+								<option value="north">Northern Region</option>
+								<option value="south">Southern Region</option>
+							</select>
+						</div>
+						<button type="submit" class="btn btn-primary">Subscribe</button>
+					</form>
+					<div id="thank-you-message" class="thank-you-message">
+						Thank you for subscribing!
 					</div>
-					<div class="form-group">
-						<label for="region">Select Region:</label>
-						<select id="region" class="form-control" required>
-							<option value="">Select a region</option>
-							<option value="east">Eastern Region</option>
-							<option value="west">Western Region</option>
-							<option value="north">Northern Region</option>
-							<option value="south">Southern Region</option>
-						</select>
-					</div>
-					<button type="submit" class="btn btn-primary">Subscribe</button>
-				</form>
-				<div id="thank-you-message" class="thank-you-message">
-					Thank you for subscribing!
 				</div>
 			</div>
 			<!-- End Alert Subscription Form -->
@@ -245,32 +291,23 @@
 		<!-- Bootstrap JS and dependencies -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-			integrity="sha384-oBqDVmMz4fnFO9Wm02HM1k6bUl7XJgtVTCw9cU8B3tvhNRzD1Jo+DLt5e0G6U0V5"
+			integrity="sha384-srPdggftA7nB/n3mRH70DVEGh3lmHK7/hh+9aAbnOFtYTfwM7Q19KnL6KTZZ/A+S"
 			crossorigin="anonymous"
 		></script>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-			integrity="sha384-ENjd0s2Z2IHZ4ywSTv6U7jJoZsFnbOn4tzKoIOyQ8WeL9CkWegV6XXk4X6IcF8Bf8"
+			integrity="sha384-QGe/NGmRkj3FOMGm4g3NBOWl02eYph8PApHtUab2b50Bz72wt67HdGbX+z7zqBi8"
 			crossorigin="anonymous"
 		></script>
-
-		<!-- Custom Script -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<!-- Custom JS -->
 		<script>
 			document
 				.getElementById("subscription-form")
 				.addEventListener("submit", function (event) {
 					event.preventDefault();
-					// Show thank you message
-					document.getElementById("thank-you-message").style.display = "block";
-					// Reset the form
-					this.reset();
+					$("#thank-you-message").show();
 				});
-
-			function toggleMenu() {
-				const navbarList = document.querySelector(".navbar-list");
-				navbarList.style.display =
-					navbarList.style.display === "none" ? "flex" : "none";
-			}
 		</script>
 	</body>
 </html>

@@ -758,6 +758,11 @@ main .btn-send:hover {
                     })
                     .catch(error => console.error('Error:', error));
                 });
+
+                <audio controls>
+                    <source src="output.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                  </audio>
                 
                 // Helper function to get CSRF token from cookies
                 function getCookie(name) {

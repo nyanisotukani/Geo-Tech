@@ -42,6 +42,7 @@
         .navbar {
             background-color: #0081a7;
             padding: 20px;
+            background: #0097b2;
         }
 
         .navbar-list {
@@ -133,25 +134,36 @@
 
 <body>
     <!--Navigation bar-->
-    <nav class="navbar">
+	<nav class="navbar">
+		<div class="container-fluid">
 
-        <ul class="navbar-list">
-            <li class="navbar-item">
-                <a href="{% url 'home' %}" class="navbar-link">Home</a>
-            </li>
-            <li class="navbar-item">
-                <a href="{% url 'map_dashboard' %}" class="navbar-link">Map Dashboard</a>
-            </li>
-            <li class="navbar-item">
-                <a href="{% url 'alerts' %}" class="navbar-link">Alerts</a>
-            </li>
-            <li class="navbar-item">
-                <a href="{% url 'reports' %}" class="navbar-link active">Reports</a>
-            </li>
-        </ul>
-        </div>
-    </nav>
-    <!--End Navigation bar-->
+			<div class="menu-icon" onclick="toggleMenu()">
+				<i class="fa fa-bars"></i>
+			</div>
+			<a href = "#">
+				<img width="70px" src="./static/Logo.png" alt="logo">
+			</a>
+			<ul class="navbar-list">
+				<li class="navbar-item">
+					<a href="{% url 'home' %}" class="navbar-link title-md">Home</a>
+				</li>
+				<li class="navbar-item">
+					<a href="{% url 'map_dashboard' %}" class="navbar-link title-md">Map Dashboard</a>
+				</li>
+				<li class="navbar-item">
+					<a href="{% url 'alerts' %}" class="navbar-link title-md">Alerts</a>
+				</li>
+				<li class="navbar-item">
+					<a href="{% url 'reports' %}" class="navbar-link title-md">Reports</a>
+				</li>
+				<li class="navbar-item">
+					<a href="{% url 'about' %}" class="navbar-link title-md">About Us</a>
+				</li>
+
+			</ul>
+		</div>
+	</nav>
+	<!--End Navigation bar-->
 
     <!--Reports Section-->
     <div class="container my-5">
