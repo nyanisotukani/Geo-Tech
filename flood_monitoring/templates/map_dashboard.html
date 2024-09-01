@@ -390,25 +390,27 @@ main .card .head .icon.down {
 	color: var(--red);
 }
 main .card .progress {
-	display: block;
-	margin-top: 24px;
-	height: 10px;
-	width: 100%;
-	border-radius: 10px;
-	background: var(--grey);
-	overflow-y: hidden;
-	position: relative;
-	margin-bottom: 4px;
+    display: block;
+    margin-top: 24px;
+    height: 10px;
+    width: 100%;
+    border-radius: 10px;
+    background: var(--grey);
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 4px;
 }
 main .card .progress::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	background: var(--blue);
-	width: var(--value);
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--blue);
+    width: 0%; /* Default width */
+    transition: width 0.3s ease; /* Smooth transition */
 }
+
 main .card .label {
 	font-size: 14px;
 	font-weight: 700;
@@ -603,6 +605,8 @@ main .btn-send:hover {
 	}
 }
 
+
+
     </style>
 </head>
 <body>
@@ -619,12 +623,12 @@ main .btn-send:hover {
             </section>
             <!-- SIDEBAR -->
 		
-			<form action="#">
-				<div class="form-group">
-					<input type="text" placeholder="Search...">
-					<i class='bx bx-search icon' ></i>
-				</div>
-			</form>
+			<form id="searchForm" action="#">
+                <div class="form-group">
+                    <input type="text" id="searchInput" placeholder="Search province...">
+                    <i class='bx bx-search icon'></i>
+                </div>
+            </form>  
             
             <!-- SIDEBAR -->
  
@@ -657,52 +661,11 @@ main .btn-send:hover {
 				<li class="divider">/</li>
 				<li><a href="#" class="active">Dashboard</a></li>
 			</ul>
-			<div class="info-data">
-				<div class="card">
-					<div class="head">
-						<div>
-							<h2>Nigeria</h2>
-							<p>High</p>
-						</div>
-						<i class='bx bx-trending-up icon' ></i>
-					</div>
-					<span class="progress" data-value="70%"></span>
-					<span class="label">70%</span>
-				</div>
-				<div class="card">
-					<div class="head">
-						<div>
-							<h2>South Africa</h2>
-							<p>Low</p>
-						</div>
-						<i class='bx bx-trending-down icon down' ></i>
-					</div>
-					<span class="progress" data-value="20%"></span>
-					<span class="label">20%</span>
-				</div>
-				<div class="card">
-					<div class="head">
-						<div>
-							<h2>Namibia</h2>
-							<p>Medium</p>
-						</div>
-						<i class='bx bx-trending-up icon' ></i>
-					</div>
-					<span class="progress" data-value="70%"></span>
-					<span class="label">70%</span>
-				</div>
-				<div class="card">
-					<div class="head">
-						<div>
-							<h2>Zimbabwe</h2>
-							<p>High</p>
-						</div>
-						<i class='bx bx-trending-up icon' ></i>
-					</div>
-					<span class="progress" data-value="80%"></span>
-					<span class="label">80%</span>
-				</div>
-			</div>
+
+			<div class="info-data" id="infoData">
+                <!-- Cards will be dynamically generated here -->
+            </div>
+
 			<div class="data">
 				<div class="content-data">
 					<div class="head">
@@ -721,61 +684,98 @@ main .btn-send:hover {
 					</div>
 				</div>
 				<div class="content-data">
-					<div class="head">
-						<h3>Chatbox</h3>
-						<div class="menu">
-							<i class='bx bx-dots-horizontal-rounded icon'></i>
-							<ul class="menu-link">
-								<li><a href="#">Edit</a></li>
-								<li><a href="#">Save</a></li>
-								<li><a href="#">Remove</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="chat-box">
-						<p class="day"><span>Today</span></p>
-						<div class="msg">
-							<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
-							<div class="chat">
-								<div class="profile">
-									<span class="username">Alan</span>
-									<span class="time">18:30</span>
-								</div>
-								<p>Hello</p>
-							</div>
-						</div>
-						<div class="msg me">
-							<div class="chat">
-								<div class="profile">
-									<span class="time">18:30</span>
-								</div>
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque voluptatum eos quam dolores eligendi exercitationem animi nobis reprehenderit laborum! Nulla.</p>
-							</div>
-						</div>
-						<div class="msg me">
-							<div class="chat">
-								<div class="profile">
-									<span class="time">18:30</span>
-								</div>
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, architecto!</p>
-							</div>
-						</div>
-						<div class="msg me">
-							<div class="chat">
-								<div class="profile">
-									<span class="time">18:30</span>
-								</div>
-								<p>Lorem ipsum, dolor sit amet.</p>
-							</div>
-						</div>
-					</div>
-					<form action="#">
-						<div class="form-group">
-							<input type="text" placeholder="Type...">
-							<button type="submit" class="btn-send"><i class='bx bxs-send' ></i></button>
-						</div>
-					</form>
-				</div>
+                    <div class="head">
+                        <h3>Chatbox</h3>
+                        <div class="menu">
+                            <i class='bx bx-dots-horizontal-rounded icon'></i>
+                            <ul class="menu-link">
+                                <li><a href="#">Edit</a></li>
+                                <li><a href="#">Save</a></li>
+                                <li><a href="#">Remove</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="chat-box" id="chat-box">
+                        <p class="day"><span>Today</span></p>
+                        <div id="messages">
+                            <!-- Messages will be appended here -->
+                        </div>
+                    </div>
+                    <form id="chat-form">
+                        <div class="form-group">
+                            <input type="text" id="message-input" placeholder="Type...">
+                            <button type="submit" class="btn-send"><i class='bx bxs-send'></i></button>
+                        </div>
+                    </form>
+                </div>
+                
+                <script>
+                document.getElementById('chat-form').addEventListener('submit', function(event) {
+                    event.preventDefault();
+                
+                    const messageInput = document.getElementById('message-input');
+                    const message = messageInput.value;
+                    messageInput.value = '';
+                
+                    // Append the user message to the chat
+                    const userMessageDiv = document.createElement('div');
+                    userMessageDiv.className = 'msg me';
+                    userMessageDiv.innerHTML = `
+                        <div class="chat">
+                            <div class="profile">
+                                <span class="time">${new Date().toLocaleTimeString()}</span>
+                            </div>
+                            <p>${message}</p>
+                        </div>
+                    `;
+                    document.getElementById('messages').appendChild(userMessageDiv);
+                
+                    // Send the message to the backend
+                    fetch('/chat/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': getCookie('csrftoken')
+                        },
+                        body: JSON.stringify({ message: message })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Append the bot response to the chat
+                        const botMessageDiv = document.createElement('div');
+                        botMessageDiv.className = 'msg';
+                        botMessageDiv.innerHTML = `
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+                            <div class="chat">
+                                <div class="profile">
+                                    <span class="username">Alan</span>
+                                    <span class="time">${new Date().toLocaleTimeString()}</span>
+                                </div>
+                                <p>${data.response}</p>
+                            </div>
+                        `;
+                        document.getElementById('messages').appendChild(botMessageDiv);
+                    })
+                    .catch(error => console.error('Error:', error));
+                });
+                
+                // Helper function to get CSRF token from cookies
+                function getCookie(name) {
+                    let cookieValue = null;
+                    if (document.cookie && document.cookie !== '') {
+                        const cookies = document.cookie.split(';');
+                        for (let i = 0; i < cookies.length; i++) {
+                            const cookie = cookies[i].trim();
+                            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                break;
+                            }
+                        }
+                    }
+                    return cookieValue;
+                }
+                </script>
+                
 			</div>
 		</main>
 		<!-- MAIN -->
@@ -982,6 +982,61 @@ tooltip: {
 
 var chart = new ApexCharts(document.querySelector("#chart"), options);
 chart.render();
+
+// Sample data for cities in South Africa
+const floodData = {
+    "Gauteng": [
+        { city: "Johannesburg", level: "High", percentage: 80 },
+        { city: "Pretoria", level: "Medium", percentage: 60 },
+        { city: "Soweto", level: "Low", percentage: 30 },
+        { city: "Tshwane", level: "High", percentage: 70 }
+    ],
+    "Western Cape": [
+        { city: "Cape Town", level: "High", percentage: 85 },
+        { city: "Stellenbosch", level: "Medium", percentage: 50 },
+        { city: "Paarl", level: "Low", percentage: 40 },
+        { city: "George", level: "High", percentage: 75 }
+    ]
+    // Add more provinces and their cities with flood data
+};
+
+document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const searchValue = document.getElementById('searchInput').value;
+    const provinceData = floodData[searchValue];
+
+    if (provinceData) {
+        // Sort data by percentage and get the top 4 cities
+        const topCities = provinceData.sort((a, b) => b.percentage - a.percentage).slice(0, 4);
+        displayCities(topCities);
+    } else {
+        alert('No data found for the searched province');
+    }
+});
+
+function displayCities(cities) {
+    const infoData = document.getElementById('infoData');
+    infoData.innerHTML = ''; // Clear previous results
+
+    cities.forEach(city => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+
+        card.innerHTML = `
+            <div class="head">
+                <div>
+                    <h2>${city.city}</h2>
+                    <p>${city.level}</p>
+                </div>
+                <i class='bx ${city.level === "Low" ? "bx-trending-down icon down" : "bx-trending-up icon"}'></i>
+            </div>
+            <span class="progress" data-value="${city.percentage}%"></span>
+            <span class="label">${city.percentage}%</span>
+        `;
+        infoData.appendChild(card);
+    });
+}
+
     </script>
     
 </body>
