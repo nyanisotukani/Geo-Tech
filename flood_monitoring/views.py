@@ -57,7 +57,7 @@ def alerts(request):
     return render(request,'alerts.html')
 
 
-from google.cloud import texttospeech
+# from google.cloud import texttospeech
 
 
 

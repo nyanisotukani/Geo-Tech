@@ -10,6 +10,6 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('alerts/', views.alerts, name='alerts'),
     path('chat/', views.chat_view, name='chat_view'),
-     path('monitor/<str:location>/', views.monitor_location, name='monitor_location'),
+    path('monitor/<str:location>/', views.monitor_location, name='monitor_location'),
 ]
  

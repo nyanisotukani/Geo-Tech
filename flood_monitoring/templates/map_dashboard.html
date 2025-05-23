@@ -207,7 +207,7 @@ li {
 /* CONTENT */
 #content {
 	position: relative;
-	width: 100%%;
+	width: 100%;
 	
 	transition: all .3s ease;
 }
@@ -400,16 +400,15 @@ main .card .progress {
     position: relative;
     margin-bottom: 4px;
 }
-main .card .progress::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+
+main .card .progress .progress-bar {
     height: 100%;
     background: var(--blue);
     width: 0%; /* Default width */
     transition: width 0.3s ease; /* Smooth transition */
 }
+
+
 
 main .card .label {
 	font-size: 14px;
@@ -758,11 +757,6 @@ main .btn-send:hover {
                     })
                     .catch(error => console.error('Error:', error));
                 });
-
-                <audio controls>
-                    <source src="output.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                  </audio>
                 
                 // Helper function to get CSRF token from cookies
                 function getCookie(name) {
@@ -991,10 +985,10 @@ chart.render();
 // Sample data for cities in South Africa
 const floodData = {
     "Gauteng": [
-        { city: "Johannesburg", level: "High", percentage: 80 },
-        { city: "Pretoria", level: "Medium", percentage: 60 },
-        { city: "Soweto", level: "Low", percentage: 30 },
-        { city: "Tshwane", level: "High", percentage: 70 }
+        { city: "Johannesburg", level: "High", percentage: 7 },
+        { city: "Pretoria", level: "Medium", percentage: 10 },
+        { city: "Soweto", level: "Low", percentage: 8 },
+        { city: "Tshwane", level: "High", percentage: 11 }
     ],
     "Western Cape": [
         { city: "Cape Town", level: "High", percentage: 85 },
@@ -1035,12 +1029,15 @@ function displayCities(cities) {
                 </div>
                 <i class='bx ${city.level === "Low" ? "bx-trending-down icon down" : "bx-trending-up icon"}'></i>
             </div>
-            <span class="progress" data-value="${city.percentage}%"></span>
+            <div class="progress">
+                <div class="progress-bar" style="width: ${city.percentage}%"></div>
+            </div>
             <span class="label">${city.percentage}%</span>
         `;
         infoData.appendChild(card);
     });
 }
+
 
     </script>
     
